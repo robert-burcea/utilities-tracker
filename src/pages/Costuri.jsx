@@ -1,6 +1,9 @@
 import React from "react";
+import { useData, useSetData } from "../DataContext";
 
 const Costuri = () => {
+  const data = useData();
+  const setData = useSetData();
   return (
     <div className="w-full h-full max-w-[80%] bg-gray-100 mx-[10%] my-[5%] flex flex-col items-center rounded-xl shadow-xl">
       <div className="my-2">
