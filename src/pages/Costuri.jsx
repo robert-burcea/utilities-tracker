@@ -6,7 +6,7 @@ const Costuri = () => {
   const setData = useSetData();
   return (
     <div className="w-full h-full max-w-[80%] bg-gray-100 mx-[10%] my-[5%] flex flex-col items-center rounded-xl shadow-xl">
-      <div className="w-full max-w-[50%] my-2 p-2 border rounded shadow-xl flex flex-col items-center">
+      <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center">
         <h1>GAZE</h1>
         <table>
           <thead>
@@ -33,7 +33,7 @@ const Costuri = () => {
           </button>
         </div>
       </div>
-      <div className="w-full max-w-[50%] my-2 p-2 border rounded shadow-xl flex flex-col items-center">
+      <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center">
         <h1>CURENT</h1>
         <table>
           <tr>

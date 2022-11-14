@@ -9,7 +9,7 @@ const Unitati = () => {
     <div className="w-full h-full max-w-[80%] bg-gray-100 mx-[10%] my-[5%] flex flex-col rounded-xl shadow-xl p-2 items-center">
       <Link
         to="/unitati/diana"
-        className="bg-green-200 w-full max-w-[40%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
+        className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
       >
         <div>
           <h1>Soba Diana</h1>
@@ -21,7 +21,7 @@ const Unitati = () => {
       </Link>
       <Link
         to="/unitati/daniela"
-        className="bg-green-200 w-full max-w-[40%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
+        className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
       >
         <div>
           <h1>Soba Daniela</h1>
@@ -33,7 +33,7 @@ const Unitati = () => {
       </Link>
       <Link
         to="/unitati/robert"
-        className="bg-green-200 w-full max-w-[40%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
+        className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
       >
         <div>
           <h1>Soba Robert</h1>
@@ -45,7 +45,7 @@ const Unitati = () => {
       </Link>
       <Link
         to="/unitati/calorifer-a"
-        className="bg-green-200 w-full max-w-[40%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
+        className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
       >
         <div>
           <h1>Calorifer A</h1>
@@ -57,7 +57,7 @@ const Unitati = () => {
       </Link>
       <Link
         to="/unitati/calorifer-b"
-        className="bg-green-200 w-full max-w-[40%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
+        className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:scale-[125%] hover:cursor-pointer flex flex-col items-center"
       >
         <div>
           <h1>Calorifer B</h1>
