@@ -20,13 +20,13 @@ function App() {
 
   return (
     <Router>
+      <div className="sticky top-0 z-30 mx-[50%] my-[-2%]"><Navbar /></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/costuri" element={<Costuri />} />
         <Route path="/unitati" element={<Unitati />} />
         <Route path="/unitati/:nume" element={<Unitate />} />
       </Routes>
-      <Navbar />
     </Router>
   );
 }
