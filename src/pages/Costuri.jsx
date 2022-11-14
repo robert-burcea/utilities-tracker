@@ -5,10 +5,10 @@ const Costuri = () => {
   const data = useData();
   const setData = useSetData();
   return (
-    <div className="w-full h-full max-w-[80%] bg-gray-100 mx-[10%] my-[5%] flex flex-col items-center rounded-xl shadow-xl">
-      <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center">
+    <div className="w-full h-full max-w-[80%] bg-transparent mx-[10%] my-[5%] flex flex-col items-center rounded-xl shadow-xl">
+      <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center bg-gray-200 bg-opacity-60">
         <h1>GAZE</h1>
-        <table>
+        <table className="bg-gray-300 rounded-xl p-2">
           <thead>
             <tr>
               <th className="py-3 px-1 border-b">Index Vechi</th>
@@ -33,9 +33,9 @@ const Costuri = () => {
           </button>
         </div>
       </div>
-      <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center">
+      <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center bg-gray-200 bg-opacity-60">
         <h1>CURENT</h1>
-        <table>
+        <table className="bg-gray-300 rounded-xl p-2">
           <tr>
             <th className="py-3 px-1 border-b">Index Vechi</th>
             <th className="py-3 px-1 border-b">Total Consum</th>

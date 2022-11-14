@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Navbar from './pages/Navbar';
 import Unitate from './pages/Unitate';
 import {useData, useSetData} from './DataContext'
+import House from './media/house.jpg'
 
 
 function App() {
@@ -20,13 +21,15 @@ function App() {
 
   return (
     <Router>
-      <div className="sticky top-0 z-30 mx-[50%] my-[-2%]"><Navbar /></div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/costuri" element={<Costuri />} />
-        <Route path="/unitati" element={<Unitati />} />
-        <Route path="/unitati/:nume" element={<Unitate />} />
-      </Routes>
+      <div className="bg-[url('./media/house.jpg')] bg-fixed bg-opacity-0 w-full h-full object-contain">
+        <div className="sticky top-0 z-30 mx-[50%] my-[-2%]"><Navbar /></div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/costuri" element={<Costuri />} />
+          <Route path="/unitati" element={<Unitati />} />
+          <Route path="/unitati/:nume" element={<Unitate />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
