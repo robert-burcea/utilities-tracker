@@ -2,97 +2,153 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import DataContext from './DataContext';
+import DataContext, { Data } from './DataContext';
 
 const data = {
+  timer:0,
+  running:false,
+  dayForReset: 11,
+  history:{},
   IndexGas:0,
   IndexElectricity:0,
+  testNumber: 1,
+  resetTermicElements: () => {
+    for(let i=0; i<= data.termicElements.length(); i++) {
+      data.termicElements[i].hoursTotal =  0;
+      data.termicElements[i].priceTotal = 0;
+      data.termicElements[i].totalKwh = 0;
+      data.termicElements[i].totalPrice = 0;
+      data.termicElements[i].currentPrice = 0;
+  }
+  },
+  resetGas: () => {
+    data.gas.newIndex = 0;
+    data.gas.newKwh = 0;
+    data.gas.newMeterHours = 0;
+    data.gas.totalCost = 0;
+    data.gas.totalKwh = 0;
+  },
+  resetElectricity: () => {
+    data.electricity.newIndex = 0;
+    data.electricity.newKwh = 0;
+    data.electricity.newElectricHours = 0;
+    data.electricity.totalCost = 0;
+    data.electricity.totalKwh = 0;
+  },
+  resetMonth: () => {
+      data.IndexGas = 0;
+      data.IndexElectricity = 0;
+      data.resetTermicElements();
+      data.resetGas();
+      data.resetElectricity();
+      console.log('Reset Complete')
+  },
+  initiate: () => {
+    if((new Date().getDate()) === data.dayForReset)
+      data.resetMonth();
+    data.recalculateOverAll();
+  },
   recalibrateWithIndex: () => {
-    this.gas.newIndex = this.IndexGas;
-    this.electricity.newIndex = this.IndexElectricity;
+    data.gas.newIndex = data.IndexGas;
+    data.electricity.newIndex = data.IndexElectricity;
   },
   recalculateOverall: () => {
     let kwhGas = 0;
     let kwhElectric = 0;
-    for(let i=0; i<= this.termicElements.length(); i++) {
-      if(this.termicElements[i].type === "gass")
-        kwhGas = kwhGas + this.termicElements[i].totalKwh;
+    for(let i=0; i<= data.termicElements.length(); i++) {
+      if(data.termicElements[i].type === "gas")
+        kwhGas = kwhGas + data.termicElements[i].totalKwh;
       else
-        kwhElectric = kwhElectric + this.termicElements[i].totalKwh;
+        kwhElectric = kwhElectric + data.termicElements[i].totalKwh;
     }
-    this.gas.totalKwh = this.gas.totalKwh + kwhGas;
-    this.electricity.totalKwh = this.electricity.totalKwh + kwhElectric;
+    data.gas.totalKwh = kwhGas;
+    data.electricity.totalKwh = kwhElectric;
   },
   gas: {
+    history:{},
     oldIndex:10375,
     oldIndexDate:11/11/2022,
     newIndex:0,
-    newMeters:0,
+    newKwh:0,
+    newMeterHours:0,
     totalCost:0,
-    totalMeters:0,
     totalKwh:0,
     pricePerKwh:0.31,
-    kwhPerMeter:10.870,
-    calculateTotalMetersToKwh: () => {
-      return this.totalMeters*this.kwhPerMeter;
+    kwhPerMeter:10.87,
+    recalibrateGasIndex: () => {
+      data.gas.calculateGasNewKwh();
+      data.gas.calculateGasTotalCost();
+      data.gas.calculateGasNewIndex();
     },
-    calculateTotalMeters: () => {
-      this.totalMeters = this.newIndex - this.oldIndex;
+    calculateGasNewKwh: () => {
+      data.gas.newKwh = data.gas.newMeterHours*data.gas.kwhPerMeter;
     },
-    calculateTotalCost: () => {
-      this.totalCost = this.calculateTotalMetersToKwh() * this.pricePerKwh; 
+    calculateGasTotalCost: () => {
+      data.gas.totalCost = data.gas.totalCost + data.gas.newKwh * data.gas.pricePerKwh; 
     },
-    calculateNewIndex: () => {
-      this.newIndex = this.OldIndex + this.newMeters;
+    calculateGasNewIndex: () => {
+      data.gas.newIndex = data.gas.oldIndex + data.gas.newKwh/data.gas.kwhPerMeter;
     },
   },
   electricity: {
+    history:{},
     oldIndex:null,
     oldIndexDate:11/11/2022,
     newIndex:0,
+    newElectricHours:0,
     newKwh:0,
     totalCost:0,
     totalKwh:0,
+    kwhPerHour:2.5,
     pricePerKwh:0.7,
-    calculateTotalCost: () => {
-      this.totalCost = this.totalKwh * this.pricePerKwh; 
+    calculateElectricNewKwh: () => {
+      data.electricity.newKwh = data.electricity.newElectricHours * data.electricity.kwhPerHour;
     },
-    calculateNewIndex: () => {
-      this.newIndex = this.OldIndex + this.newKwh;
+    calculateElectricTotalCost: () => {
+      data.totalCost = data.totalKwh * data.pricePerKwh; 
+    },
+    calculateElectricNewIndex: () => {
+      data.newIndex = data.OldIndex + data.newKwh;
     },
   },
   termicElements: [
     {
-      id:1, 
-      name:"daniela",
-      type:"gass",
+      id:1,
+      timer:0,
+      history:{}, 
+      name:"soba-daniela",
+      type:"gas",
       hoursTotal:0,
       priceTotal:0,
-      active:false,
+      running:false,
       startTime:null,
       totalKwh:0,
       totalPrice:0,
       currentPrice:0
   },
   {
-    id:2, 
-    name:"diana",
-    type:"gass",
+    id:2,
+    timer:0,
+    history:{}, 
+    name:"soba-diana",
+    type:"gas",
     hoursTotal:0,
     priceTotal:0,
-    active:false,
+    running:false,
     startTime:null,
     totalKwh:0,
     totalPrice:0,
     currentPrice:0
 },
 {
-  id:3, 
-  name:"robert",
-  type:"gass",
+  id:3,
+  timer:0,
+  history:{}, 
+  name:"soba-robert",
+  type:"gas",
   hoursTotal:0,
   priceTotal:0,
-  active:false,
+  running:false,
   startTime:null,
   totalKwh:0,
   totalPrice:0,
@@ -100,11 +156,13 @@ const data = {
 },
 {
       id:4, 
+      timer:0,
+      history:{},
       name:"calorifer-a",
       type:"electric",
       hoursTotal:0,
       priceTotal:0,
-      active:false,
+      running:false,
       startTime:null,
       totalKwh:0,
       totalPrice:0,
@@ -112,11 +170,13 @@ const data = {
   },
   {
     id:5, 
+    timer:0,
+    history:{},
     name:"calorifer-b",
     type:"electric",
     hoursTotal:null,
     priceTotal:null,
-    active:false,
+    running:false,
     startTime:null,
     totalKwh:null,
     totalPrice:null,
