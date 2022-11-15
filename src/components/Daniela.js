@@ -8,19 +8,6 @@ const Daniela = (props) => {
     const [timer, setTimer] = useState(props.timerDaniela)
     const [running, setRunning] = useState(props.runningDaniela)
 
-    useEffect(() => {
-      let interval;
-      if (running) {
-        interval = setInterval(() => {
-          setTimer((prevTime) => prevTime + 10);
-          props.childToParent(timer,true,0);
-        }, 10);
-      } else if (!running) {
-        clearInterval(interval);
-      }
-      return () => clearInterval(interval);
-    }, [running]);
-
     return (
       <div className="w-full max-w-[80%] bg-green-200 mx-[10%] my-[5%] flex flex-col rounded-xl shadow-xl p-2 items-center">
         <h1 className="text-2xl">Soba Daniela</h1>

@@ -48,6 +48,18 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    let intervalDaniela;
+    if (runningDaniela) {
+      intervalDaniela = setInterval(() => {
+        setTimerDaniela((prevTime) => prevTime + 10);
+      }, 10);
+    } else if (!runningDaniela) {
+      clearInterval(intervalDaniela);
+    }
+    return () => clearInterval(intervalDaniela);
+  }, [runningDaniela]);
+
     //aici le salvezi in DB:
   useEffect(() => {
     if(timerDaniela) 
