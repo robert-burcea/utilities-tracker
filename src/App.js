@@ -21,7 +21,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-[url('./media/house.jpg')] bg-fixed bg-opacity-0 w-full h-full object-contain">
+      <div className="bg-[url('./media/house.jpg')] bg-fixed bg-opacity-0 w-full h-screen bg-cover">
         <div className="sticky top-0 z-30 mx-[50%] my-[-2%]"><Navbar /></div>
         <Routes>
           <Route path="/" element={<Home />} />
