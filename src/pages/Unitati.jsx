@@ -12,12 +12,8 @@ const Unitati = () => {
         to="/unitati/diana"
         className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:cursor-pointer flex flex-col items-center"
       >
-        <div>
-          <h1>Soba Diana</h1>
-          <div>
-            <p>CONSUMAT</p>
-            <div></div>
-          </div>
+        <div className="flex flex-col items-center">
+          <h1 className="text-2xl">Soba Diana</h1>
         </div>
       </Link>
       <Link
@@ -32,36 +28,24 @@ const Unitati = () => {
         to="/unitati/robert"
         className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:cursor-pointer flex flex-col items-center"
       >
-        <div>
-          <h1>Soba Robert</h1>
-          <div>
-            <p>CONSUMAT</p>
-            <div></div>
-          </div>
+        <div className="flex flex-col items-center">
+          <h1 className="text-2xl">Soba Robert</h1>
         </div>
       </Link>
       <Link
         to="/unitati/calorifer-a"
         className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:cursor-pointer flex flex-col items-center"
       >
-        <div>
-          <h1>Calorifer A</h1>
-          <div>
-            <p>CONSUMAT</p>
-            <div></div>
-          </div>
+        <div className="flex flex-col items-center">
+          <h1 className="text-2xl">Calorifer 1</h1>
         </div>
       </Link>
       <Link
         to="/unitati/calorifer-b"
         className="bg-green-200 w-full max-w-[80%] m-2 p-3 border rounded-xl shadow-xl hover:cursor-pointer flex flex-col items-center"
       >
-        <div>
-          <h1>Calorifer B</h1>
-          <div>
-            <p>CONSUMAT</p>
-            <div></div>
-          </div>
+        <div className="flex flex-col items-center">
+          <h1 className="text-2xl">Calorifer 2</h1>
         </div>
       </Link>
     </div>
