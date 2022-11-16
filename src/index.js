@@ -7,6 +7,7 @@ import DataContext, { Data } from './DataContext';
 const basicData = {
   electricity: {
     name: 'CURENT',
+    dayForReset: null,
     initialIndex: 2167,
     newInput: {
       oldIndex:0,
@@ -18,6 +19,7 @@ const basicData = {
   },
   gas: {
     name: 'GAZE',
+    dayForReset: 17,
     initialIndex: 10375,
     newInput: {
       oldIndex:0,

@@ -15,6 +15,10 @@ const ElementTermic = ({name}) => {
         const totalCost = indexUnits * data.pricePerIndexUnit;
         return Math.floor(totalCost);
     }
+    const reset = (data) => {
+        if((new Date().getDate()) === data.dayForReset)
+          console.log("TBC")
+      }
     const submitData = () => {
         if(name === 'gas') {
             let newGas = info.gas;
