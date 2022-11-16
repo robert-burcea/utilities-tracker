@@ -1,5 +1,4 @@
 import React from "react";
-import Daniela from "../components/Daniela";
 import { useData, useSetData } from "../DataContext";
 import { Link, redirect } from "react-router-dom";
 import Costuri from "./Costuri";

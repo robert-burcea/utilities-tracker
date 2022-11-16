@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, redirect } from "react-router-dom";
-import Daniela from "../components/Daniela";
 import { useData, useSetData } from "../DataContext";
 
 const Unitati = () => {

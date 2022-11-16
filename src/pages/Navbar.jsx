@@ -11,16 +11,16 @@ const Navbar = () => {
         ACASA
       </Link>
       <Link
-        to="/costuri"
+        to="/gaze"
         className="bg-red-100 text-xl shadow-xl rounded-xl p-3 m-2 hover:scale-[110%]"
       >
-        COSTURI
+        GAZE
       </Link>
       <Link
-        to="/unitati"
+        to="/curent"
         className="bg-red-100 text-xl shadow-xl rounded-xl p-3 m-2 hover:scale-[110%]"
       >
-        UNITATI
+        CURENT
       </Link>
     </div>
   );
