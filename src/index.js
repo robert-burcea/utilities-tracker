@@ -4,6 +4,27 @@ import './index.css';
 import App from './App';
 import DataContext, { Data } from './DataContext';
 
+const basicData = {
+  electricity: {
+    initialIndex: 0,
+    newInput: {
+      oldIndex:0,
+      newIndex: 0,
+      date: new Date(),
+    },
+    totalCost: 0
+  },
+  gas: {
+    initialIndex: 0,
+    newInput: {
+      oldIndex:0,
+      newIndex: 0,
+      date: new Date(),
+    },
+    totalCost: 0 
+  }
+}
+
 const data = {
   timer:0,
   running:false,
@@ -189,6 +210,6 @@ const data = {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <DataContext value={data}><App /></DataContext>
+     <DataContext value={basicData}><App /></DataContext>
   </React.StrictMode>
 );
