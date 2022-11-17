@@ -11,7 +11,7 @@ const ElementTermic = ({name}) => {
         setNewIndex(e.target.value)
     }
     const calculateConsumption = (data) => {
-        const indexUnits = data.newInput.oldIndex - data.initialIndex;
+        const indexUnits = data.oldIndex - data.initialIndex;
         const totalCost = indexUnits * data.pricePerIndexUnit;
         return Math.floor(totalCost);
     }
@@ -22,15 +22,15 @@ const ElementTermic = ({name}) => {
     const submitData = () => {
         if(name === 'gas') {
             let newGas = info.gas;
-            newGas.newInput.oldIndex = newIndex;
-            newGas.newInput.date = new Date();
+            newGas.oldIndex = newIndex;
+            newGas.date = new Date();
             newGas.totalCost = calculateConsumption(newGas);
             setInfo({...info, gas: newGas})
         }
         else {
             let newElectricity = info.electricity;
-            newElectricity.newInput.oldIndex = newIndex;
-            newElectricity.newInput.date = new Date();
+            newElectricity.oldIndex = newIndex;
+            newElectricity.date = new Date();
             newElectricity.totalCost = calculateConsumption(newElectricity);
             setInfo({...info, electricity: newElectricity})
         }
@@ -53,7 +53,7 @@ const ElementTermic = ({name}) => {
                 {data.initialIndex}
               </td>
               <td className="border-b text-xl text-green-800">
-                {data.newInput.oldIndex}
+                {data.oldIndex}
               </td>
               <td className="border-b text-xl text-green-800">
                 {data.totalCost} RON
@@ -61,7 +61,7 @@ const ElementTermic = ({name}) => {
             </tr>
           </tbody>
         </table>
-        <p>Ultimul index introdus la {JSON.stringify(new Date(data.newInput.date).toLocaleDateString())}</p>
+        <p>Ultimul index introdus la {JSON.stringify(new Date(data.date).toLocaleDateString())}</p>
         <div className="flex flex-col items-center">
           <p className="m-2">Introdu index nou</p>
           <input

@@ -13,12 +13,38 @@ import {useData, useSetData} from './DataContext'
 import House from './media/house.jpg'
 import Unitate from './pages/Unitate';
 import ElementTermic from './pages/ElementTermic';
+import db from './firebase'
+import { 
+    collection, onSnapshot
+  } from 'firebase/firestore'
 
 
 function App() {
 
   const data = useData();
   const setData = useSetData();
+  const [dbData, setDbData] = useState({})
+
+
+  const dataFetch = () => {
+        
+    const colRef = collection(db, 'utilities-data')
+
+    onSnapshot(colRef, (snapshot) => {
+        let dbCopy = null;
+        console.log(snapshot.docs)
+        snapshot.docs.forEach((doc) => {
+          dbCopy = doc.data();
+        })
+        console.log('What i get:',dbCopy);
+        setDbData(dbCopy);
+        console.log(dbCopy);
+    })
+  }
+
+useEffect(() => {
+    dataFetch();
+},[])
 
   return (
     <Router>
