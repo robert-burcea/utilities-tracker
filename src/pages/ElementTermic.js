@@ -26,26 +26,41 @@ const ElementTermic = ({name}) => {
         const totalCost = indexUnits * data.pricePerIndexUnit;
         return Math.floor(totalCost);
     }
-    const reset = (data) => {
-        if((new Date().getDate()) === data.dayForReset)
-          console.log("TBC")
+    const resetAfterIndexInput = (data) => {
+      let newData = data;
+      newData.oldIndex = Number(newIndex);
+      newData.date = new Date();
+      newData.totalCost = Math.floor(Number(calculateConsumption(data)));
+      return newData;
+    }
+    const createBill = (type) => {
+          let bill = {
+            type: type,
+            totalCost: (newIndex - data.initialIndex)*data.pricePerIndexUnit,
+            date: new Date()
+          }
+          let newData = data;
+          newData.bills.push(bill);
+          newData.initialIndex = newIndex;
+          newData.oldIndex = 0;
+          newData.totalCost = 0;
+          return newData;
       }
-    const submitData = () => {
-        if(name === 'gas') {
-            let newGas = info.gas;
-            newGas.oldIndex = newIndex;
-            newGas.date = new Date();
-            newGas.totalCost = calculateConsumption(newGas);
-            setInfo({...info, gas: newGas})
+    const submitData = (type) => {
+        if((new Date().getDate()) === data.dayForReset || type === 'Regularizare')
+        {
+          var newData = createBill(type);
+          if(name === 'gas')
+            setInfo({...info, gas: newData})
+          else  
+            setInfo({...info, electricity: newData})
+        }
+        else if (name === 'gas') {
+          setInfo({...info, gas: resetAfterIndexInput(data)})
         }
         else {
-            let newElectricity = info.electricity;
-            newElectricity.oldIndex = newIndex;
-            newElectricity.date = new Date();
-            newElectricity.totalCost = calculateConsumption(newElectricity);
-            setInfo({...info, electricity: newElectricity})
+          setInfo({...info, electricity: resetAfterIndexInput(data)})
         }
-        console.log(info)
         // Add a new document in collection "cities"
         setDoc(doc(db, "utilities", "data"), {
           electricity: info.electricity,
@@ -56,7 +71,7 @@ const ElementTermic = ({name}) => {
   return (
     <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center bg-gray-200 bg-opacity-60">
         <h1>{data?.name}</h1>
-        <table className="bg-gray-300 rounded-xl p-2">
+        <table className="bg-gray-300 rounded-xl p-2 m-1">
           <thead>
             <tr>
               <th className="py-3 px-1 border-b">Index Initial</th>
@@ -78,16 +93,41 @@ const ElementTermic = ({name}) => {
             </tr>
           </tbody>
         </table>
-        <p>Ultimul index introdus la {JSON.stringify(new Date(data?.date.toDate()).toLocaleDateString())}</p>
+        <table className="bg-gray-300 rounded-xl p-2 m-1">
+          <thead>
+            <tr>
+              <th className="py-3 px-1 border-b">Ultima Factura</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border-b text-xl text-green-800 flex justify-center">
+                {data?.bills?.length > 0 ? <p className="px-1">{data?.bills[data?.bills.length-1]?.totalCost}</p> : <p className="px-1">0</p>} RON
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <span className="flex flex-col items-center"></span>
         <div className="flex flex-col items-center">
-          <p className="m-2">Introdu index nou</p>
+          <p className="m-2 font-bold">Introdu index nou</p>
           <input
           onChange={setIndex}
-            type="Number"
+            type="number"
             className="border rounded-xl text-center"
           ></input>
-          <button className="text-xl shadow-xl rounded bg-green-100 p-2 m-2 hover:scale-[125%]" onClick={submitData}>
+          <button className="text-xl shadow-xl rounded bg-green-100 p-2 m-2 hover:scale-[125%]" onClick={() => submitData('Online')}>
             SALVEAZA
+          </button>
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="m-2 font-bold">INDEX REGULARIZARE:</p>
+          <input
+          onChange={setIndex}
+            type="number"
+            className="border rounded-xl text-center"
+          ></input>
+          <button className="text-xl shadow-xl rounded bg-orange-300 p-2 m-2 hover:scale-[125%]" onClick={() => submitData('Regularizare')}>
+            REGULARIZARE
           </button>
         </div>
       </div>
