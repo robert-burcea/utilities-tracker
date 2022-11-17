@@ -1,11 +1,23 @@
 import React, {useState} from 'react'
 import { useData, useSetData } from "../DataContext";
+import db from '../firebase'
+import { 
+  collection, onSnapshot, doc, setDoc
+} from 'firebase/firestore'
 
 const ElementTermic = ({name}) => {
     const info = useData();
     const setInfo = useSetData();
     const [newIndex, setNewIndex] = useState(0);
     const data = name === 'gas' ? info.gas : info.electricity;
+
+    // Add a new document in collection "cities"
+  /*setDoc(doc(db, "cities", "LA"), {
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+  }).then(console.log("Doc set!")) */
+
 
     const setIndex = (e) => {
         setNewIndex(e.target.value)
@@ -34,6 +46,12 @@ const ElementTermic = ({name}) => {
             newElectricity.totalCost = calculateConsumption(newElectricity);
             setInfo({...info, electricity: newElectricity})
         }
+        console.log(info)
+        // Add a new document in collection "cities"
+        setDoc(doc(db, "utilities", "data"), {
+          electricity: info.electricity,
+          gas: info.gas
+        }).then(console.log("Doc set!"))
     }
 
   return (

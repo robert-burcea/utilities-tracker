@@ -15,7 +15,7 @@ import Unitate from './pages/Unitate';
 import ElementTermic from './pages/ElementTermic';
 import db from './firebase'
 import { 
-    collection, onSnapshot
+    collection, onSnapshot, doc, setDoc
   } from 'firebase/firestore'
 
 
@@ -28,7 +28,7 @@ function App() {
 
   const dataFetch = () => {
         
-    const colRef = collection(db, 'utilities-data')
+    const colRef = collection(db, 'utilities')
 
     onSnapshot(colRef, (snapshot) => {
         let dbCopy = null;
