@@ -11,7 +11,6 @@ const ElementTermic = ({name}) => {
     const [newIndex, setNewIndex] = useState(0);
     const data = name === 'gas' ? info.gas : info.electricity;
 
-    // Add a new document in collection "cities"
   /*setDoc(doc(db, "cities", "LA"), {
     name: "Los Angeles",
     state: "CA",
@@ -56,7 +55,7 @@ const ElementTermic = ({name}) => {
 
   return (
     <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center bg-gray-200 bg-opacity-60">
-        <h1>{data.name}</h1>
+        <h1>{data?.name}</h1>
         <table className="bg-gray-300 rounded-xl p-2">
           <thead>
             <tr>
@@ -68,18 +67,18 @@ const ElementTermic = ({name}) => {
           <tbody>
             <tr>
               <td className="border-b text-xl text-green-800">
-                {data.initialIndex}
+                {data?.initialIndex}
               </td>
               <td className="border-b text-xl text-green-800">
-                {data.oldIndex}
+                {data?.oldIndex}
               </td>
               <td className="border-b text-xl text-green-800">
-                {data.totalCost} RON
+                {data?.totalCost} RON
               </td>
             </tr>
           </tbody>
         </table>
-        <p>Ultimul index introdus la {JSON.stringify(new Date(data.date).toLocaleDateString())}</p>
+        <p>Ultimul index introdus la {JSON.stringify(new Date(data?.date).toLocaleDateString())}</p>
         <div className="flex flex-col items-center">
           <p className="m-2">Introdu index nou</p>
           <input

@@ -39,12 +39,17 @@ function App() {
         console.log('What i get:',dbCopy);
         setDbData(dbCopy);
         console.log(dbCopy);
+        setData(dbData)
     })
   }
 
 useEffect(() => {
     dataFetch();
 },[])
+useEffect(() => { 
+  if(dbData)
+  setData(dbData)
+},[dbData])
 
   return (
     <Router>
