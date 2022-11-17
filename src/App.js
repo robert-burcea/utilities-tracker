@@ -52,7 +52,7 @@ useEffect(() => {
   return (
     <Router>
       <div className="bg-[url('./media/house.jpg')] bg-fixed bg-opacity-0 w-full h-screen bg-cover touch-none">
-        <div className="sticky top-0 z-30 mx-[50%] my-[-2%]"><Navbar /></div>
+        <div className="sticky top-[85%] z-30 mx-[50%] my-[-2%]"><Navbar /></div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gaze" element={<ElementTermic name="gas" />} />

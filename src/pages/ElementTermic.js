@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useData, useSetData } from "../DataContext";
 import db from '../firebase'
 import { 
@@ -10,13 +10,6 @@ const ElementTermic = ({name}) => {
     const setInfo = useSetData();
     const [newIndex, setNewIndex] = useState(0);
     const data = name === 'gas' ? info.gas : info.electricity;
-
-  /*setDoc(doc(db, "cities", "LA"), {
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-  }).then(console.log("Doc set!")) */
-
 
     const setIndex = (e) => {
         setNewIndex(e.target.value)
@@ -67,10 +60,16 @@ const ElementTermic = ({name}) => {
           gas: info.gas
         }).then(console.log("Doc set!"))
     }
+    useEffect(() => {
+      if((new Date().getDate()) === data.dayForReset) {
+        alert(`Poti inregistra si transmite indexul la ${data?.name} online`)
+      }
+    },[])
 
   return (
-    <div className="w-full max-w-[98%] my-2 p-2 border rounded shadow-xl flex flex-col items-center bg-gray-200 bg-opacity-60">
-        <h1>{data?.name}</h1>
+    <div className="w-full mx-auto max-w-[96%] m-2 p-2 border rounded shadow-xl flex flex-col items-center bg-gray-200 bg-opacity-60">
+        <h1 className="font-bold">{data?.name}</h1>
+        <h3>Transmitere index pe {data?.dayForReset} ale lunii</h3>
         <table className="bg-gray-300 rounded-xl p-2 m-1">
           <thead>
             <tr>
@@ -96,7 +95,7 @@ const ElementTermic = ({name}) => {
         <table className="bg-gray-300 rounded-xl p-2 m-1">
           <thead>
             <tr>
-              <th className="py-3 px-1 border-b">Ultima Factura</th>
+              <th className="py-3 px-1 border-b">Urmatoarea Factura</th>
             </tr>
           </thead>
           <tbody>

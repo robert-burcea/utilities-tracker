@@ -17,24 +17,32 @@ const Home = () => {
             <p className="text-green-800 font-bold text-2xl">
               {data?.gas?.totalCost} RON
             </p>
-            <p className="">
-              Ultimul index introdus la{" "}
-              {JSON.stringify(
-                new Date(data?.gas?.date.toDate()).toLocaleDateString()
-              )}
-            </p>
+            <span className="flex flex-col items-center">
+              Ultimul index introdus la
+              <p>
+                {" "}
+                {JSON.stringify(
+                  new Date(data?.gas?.date.toDate()).toLocaleDateString()
+                )}
+              </p>
+            </span>
           </div>
           <div className="m-2 p-2 flex flex-col items-center">
             <h1 className="font-bold text-xl">CURENT:</h1>
             <p className="text-green-800 font-bold text-2xl">
               {data?.electricity?.totalCost} RON
             </p>
-            <p className="">
-              Ultimul index introdus la{" "}
-              {JSON.stringify(
-                new Date(data?.electricity?.date?.toDate()).toLocaleDateString()
-              )}
-            </p>
+            <span className="flex flex-col items-center">
+              Ultimul index introdus la
+              <p>
+                {" "}
+                {JSON.stringify(
+                  new Date(
+                    data?.electricity?.date?.toDate()
+                  ).toLocaleDateString()
+                )}
+              </p>
+            </span>
           </div>
           <div className="flex flex-col items-center">
             <h1 className="font-bold text-xl">TOTAL:</h1>
