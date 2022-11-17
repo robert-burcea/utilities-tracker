@@ -78,7 +78,7 @@ const ElementTermic = ({name}) => {
             </tr>
           </tbody>
         </table>
-        <p>Ultimul index introdus la {JSON.stringify(new Date(data?.date).toLocaleDateString())}</p>
+        <p>Ultimul index introdus la {JSON.stringify(new Date(data?.date.toDate()).toLocaleDateString())}</p>
         <div className="flex flex-col items-center">
           <p className="m-2">Introdu index nou</p>
           <input
